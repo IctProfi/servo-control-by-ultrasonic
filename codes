@@ -1,41 +1,45 @@
-#include <Servo.h>
-
-
-Servo motor;
-
-int trig = 3;
-int echo = 2;
-int red = 12;
-int green = 11;
-
-int time, distance;
-void setup()
-{
-  pinMode(trig, OUTPUT);
-  pinMode(echo, INPUT);
-  pinMode(red, OUTPUT);
-  pinMode(green, OUTPUT);
-
-  motor.attach(9);
-
-}
-
-void loop()
-{
-  digitalWrite(trig, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trig, LOW);
-
-  time = pulseIn(echo, HIGH);
-  distance = (time * 0.034) / 2;
-
-
-  if (distance < 50)
-  {
-
-    motor.write(0);
-
-  } else {
-    motor.write(90);
-  }
-}
+    #include <Servo.h>
+    
+    
+    Servo motor;
+    
+    int trig = 3;
+    int echo = 2;
+    int red = 12;
+    int green = 11;
+    
+    int time, distance;
+    void setup()
+    {
+      pinMode(trig, OUTPUT);
+      pinMode(echo, INPUT);
+      pinMode(red, OUTPUT);
+      pinMode(green, OUTPUT);
+    
+      motor.attach(9);
+    
+    }
+    
+    void loop()
+    {
+      digitalWrite(trig, HIGH);
+      delayMicroseconds(10);
+      digitalWrite(trig, LOW);
+    
+      time = pulseIn(echo, HIGH);
+      distance = (time * 0.034) / 2;
+    
+    
+      if (distance < 50)
+      {
+    
+        motor.write(0);
+        digitalWrite(green,HIGH);
+        digitalWrite(red,LOW);
+    
+      } else {
+        motor.write(90);
+             digitalWrite(green,LOW);
+        digitalWrite(red,HIGH);
+      }
+    }
